@@ -1,3 +1,4 @@
+import fs from 'fs';
 import _ from 'lodash';
 import { color, log, cyan, magenta} from "console-log-colors";
 
@@ -9,6 +10,9 @@ const output = _.uniq(my_array);
 
 console.log(magenta(output));
 
-const backwards = _.sortBy(my_array, (a,b) => b < a );
+//Syncronis File Access:
+const file = fs.readFileSync('./data.json', {encoding: 'utf-8'});
+console.log(cyan(file));
 
-console.log(cyan(backwards));
+//ASync File Access Method:
+fs.readFile('./data.json', {encoding: 'utf-8'}, (err,f) => console.log(color.magenta(f)));
